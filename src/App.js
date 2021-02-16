@@ -1,10 +1,10 @@
 import React from 'react';
-import Home from './containers/Home';
+import World from './containers/World';
 
 function App() {
   return (
     <div>
-      <Home />
+      <World />
     </div>
   );
 }
