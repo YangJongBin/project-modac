@@ -1,14 +1,24 @@
-import Application from './Application.js'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-window.application = new Application({
-    $canvas: document.querySelector('.canvas'),
-})
+import './index.css';
+import App from './App.js';
+import reportWebVitals from './reportWebVitals';
+import rootReducer from './modules';
 
-if(module.hot)
-{
-    module.hot.dispose(() =>
-    {
-        window.application.destructor()
-        window.application = null
-    })
-}
+const store = createStore(rootReducer, composeWithDevTools());
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
